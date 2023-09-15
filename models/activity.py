@@ -12,7 +12,7 @@ class Activity(BaseModel, Base):
     """Representation of Activity """
     if models.storage_t == 'db':
         __tablename__ = 'activities'
-          __table_args__ = (
+        __table_args__ = (
             {'mysql_default_charset': 'latin1'})
         name = Column(String(128), nullable=False)
     else:
