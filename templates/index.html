@@ -15,7 +15,7 @@
   <!-- 
     - custom css link
   -->
-  <link rel="stylesheet" href="assets/styles/style.css">
+  <link rel="stylesheet" href="../assets/styles/style.css">
 
   <!-- 
     - google font link
@@ -25,6 +25,10 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
     rel="stylesheet">
+    <link rel="stylesheet" href="../assets/styles/6-filters.css">
+    <link rel="stylesheet" href="../assets/styles/8-places.css">
+        <!-- Import jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 
 <body id="top">
@@ -171,15 +175,38 @@
       <section class="tour-search">
         <div class="container">
 
-          <form action="" class="tour-search-form">
-
-            <div class="input-wrapper">
-              <label for="activities" class="input-label">Search Activity*</label>
-
-              <input type="text" name="activities" id="activities" required placeholder="Enter activity"
-                class="input-field">
+          <section class="filters">
+            <div class="locations">
+                    <h3>States</h3>
+              <h4>&nbsp;</h4>
+                    <ul class="popover">
+                {% for state in states.values()|sort(attribute='name') %}
+                      <li>
+                  <input type="checkbox" data-id="{{ state.id }}" data-name="{{ state.name }}"><h2>{{ state.name }}</h2>
+                        <ul>
+                  {% for city in state.cities|sort(attribute='name') %}
+                          <li><input type="checkbox" data-id="{{ city.id }}" data-name="{{ city.name }}">{{ city.name }}</li>
+                  {% endfor %}
+                        </ul>
+                      </li>
+                {% endfor %}
+              </ul>
             </div>
-
+            <div class="activities">
+                    <h3>Activities</h3>
+                    <h4>&nbsp;</h4>
+                    <ul class="popover">
+                {% for acty in activities.values() %}
+                <li>
+                  <input type="checkbox" data-id="{{ acty.id }}" data-name="{{ acty.name }}">{{ acty.name }}
+                </li>
+                {% endfor %}
+                    </ul>
+            </div>
+            <button>
+              Search
+            </button>
+                </section>
             <div class="input-wrapper">
               <label for="people" class="input-label">No.of Persons*</label>
 
