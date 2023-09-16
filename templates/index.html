@@ -15,7 +15,7 @@
   <!-- 
     - custom css link
   -->
-  <link rel="stylesheet" href="../assets/styles/style.css">
+  <link rel="stylesheet" href="/static/styles/style.css">
 
   <!-- 
     - google font link
@@ -25,11 +25,16 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
     rel="stylesheet">
-    <link rel="stylesheet" href="../assets/styles/6-filters.css">
-    <link rel="stylesheet" href="../assets/styles/8-places.css">
-    <link type="text/css" rel="stylesheet" href="../assets/js/101-hbnb.js">
+    <link rel="stylesheet" href="/static/styles/6-filters.css">
+    <link rel="stylesheet" href="/static/styles/8-places.css">
+
         <!-- Import jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+      <!-- Import custom Javascript -->
+    <script type="text/javascript" src="/static/js/script.js"></script>
+
+
 </head>
 
 <body id="top">
@@ -89,7 +94,7 @@
           <div class="navbar-top">
 
             <a href="#" class="logo">
-              <img src="assets/gallery/rolands-varsbergs.jpg" alt="Tourly logo">
+              <img src="static/gallery/rolands-varsbergs.jpg" alt="Tourly logo">
             </a>
 
             <button class="nav-close-btn" aria-label="Close Menu" data-nav-close-btn>
@@ -152,9 +157,9 @@
           <h2 class="h1 hero-title">Journey to explore Mzansi</h2>
 
           <p class="hero-text">
-            Zkhipani is a platform designed for travelers who visit smaller towns and cities and want to discover the best local food, entertainment, and activities.
-             It aims to provide access to authentic and affordable experiences, including traditional and home-cooked cuisine, as well as lesser-known but high-quality attractions.
-             if you're tired of overpriced and bland options while traveling, Zkhipani can help you find the hidden gems and local favorites in these places.
+    Zkhipani is a platform designed for travelers who visit smaller towns and cities and want to discover the best local food, entertainment, and activities.
+    It aims to provide access to authentic and affordable experiences, including traditional and home-cooked cuisine, as well as lesser-known but high-quality attractions.
+    if you're tired of overpriced and bland options while traveling, Zkhipani can help you find the hidden gems and local favorites in these places.
           </p>
 
           <div class="btn-group">
@@ -178,35 +183,40 @@
 
           <section class="filters">
             <div class="locations">
-                    <h3>States</h3>
-              <h4>&nbsp;</h4>
-                    <ul class="popover">
-                {% for state in states.values()|sort(attribute='name') %}
-                      <li>
-                  <input type="checkbox" data-id="{{ state.id }}" data-name="{{ state.name }}"><h2>{{ state.name }}</h2>
-                        <ul>
-                  {% for city in state.cities|sort(attribute='name') %}
-                          <li><input type="checkbox" data-id="{{ city.id }}" data-name="{{ city.name }}">{{ city.name }}</li>
-                  {% endfor %}
-                        </ul>
-                      </li>
-                {% endfor %}
-              </ul>
+    	        <h3>States</h3>
+            	<h4>&nbsp;</h4>
+	            <div class="popover">
+	              <ul>
+	                {% for state in states %}
+	                <li>
+		                <h2>{{ state[0].name }}:</h2>
+		                <ul>
+              		    {% for city in state[1] %}
+		                  <li><input type="checkbox" data-id="{{ city_id }}" data-name="{{ city_name }}" > {{ city.name }}</li>
+	                {% endfor %}
+		                </ul>
+	                </li>
+	                {% endfor %}
+	              </ul>
+	            </div>
+	          </div>
+	          <div class="amenities">
+	            <h3>Activities</h3>
+	            <h4>&nbsp;</h4>
+	            <div class="popover">
+	              <ul>
+	                {% for activity in activities %}
+	                <li><input type="checkbox" data-id="{{ activity_id }}" data-name="{{ activity_name }}"> {{ activity.name }}</li>
+	                {% endfor %}
+	              </ul>
+	            </div>
             </div>
-            <div class="activities">
-                    <h3>Activities</h3>
-                    <h4>&nbsp;</h4>
-                    <ul class="popover">
-                {% for acty in activities.values() %}
-                <li>
-                  <input type="checkbox" data-id="{{ acty.id }}" data-name="{{ acty.name }}">{{ acty.name }}
-                </li>
-                {% endfor %}
-                    </ul>
-            </div>
-            <button>
+            <button type="button">
               Search
             </button>
+</section>
+      <section class="places">
+      </section>
                 </section>
             <div class="input-wrapper">
               <label for="people" class="input-label">No.of Persons*</label>
@@ -250,7 +260,7 @@
               <div class="popular-card">
 
                 <figure class="card-img">
-                  <img src="assets/gallery/glamping.jpeg" alt="San miguel, italy" loading="lazy">
+                  <img src="static/gallery/glamping.jpeg" alt="San miguel, italy" loading="lazy">
                 </figure>
 
                 <div class="card-content">
@@ -285,7 +295,7 @@
               <div class="popular-card">
 
                 <figure class="card-img">
-                  <img src="assets/gallery/bokone.jpeg" alt="Burj khalifa, dubai" loading="lazy">
+                  <img src="static/gallery/bokone.jpeg" alt="Burj khalifa, dubai" loading="lazy">
                 </figure>
 
                 <div class="card-content">
@@ -320,7 +330,7 @@
               <div class="popular-card">
 
                 <figure class="card-img">
-                  <img src="assets/gallery/oyster-box.jpg" alt="Kyoto temple, japan" loading="lazy">
+                  <img src="static/gallery/oyster-box.jpg" alt="Kyoto temple, japan" loading="lazy">
                 </figure>
 
                 <div class="card-content">
@@ -356,7 +366,7 @@
                 <div class="popular-card">
   
                   <figure class="card-img">
-                    <img src="assets/gallery/rolands-varsbergs.jpg" alt="Bush" loading="lazy">
+                    <img src="static/gallery/rolands-varsbergs.jpg" alt="Bush" loading="lazy">
                   </figure>
   
                   <div class="card-content">
@@ -393,7 +403,7 @@
                 <div class="popular-card">
   
                   <figure class="card-img">
-                    <img src="assets/gallery/drakensberg.jpg" alt="Drakensberg" loading="lazy">
+                    <img src="static/gallery/drakensberg.jpg" alt="Drakensberg" loading="lazy">
                   </figure>
   
                   <div class="card-content">
@@ -428,7 +438,7 @@
                 <div class="popular-card">
                     
                   <figure class="card-img">
-                    <img src="assets/gallery/aditya-chinchure.jpg" alt="Kyoto temple, japan" loading="lazy">
+                    <img src="static/gallery/aditya-chinchure.jpg" alt="Kyoto temple, japan" loading="lazy">
                   </figure>
   
                   <div class="card-content">
@@ -485,31 +495,31 @@
 
             <li class="gallery-item">
               <figure class="gallery-image">
-                <img src="assets/gallery/table-mountain.jpg" alt="Gallery image">
+                <img src="static/gallery/table-mountain.jpg" alt="Gallery image">
               </figure>
             </li>
 
             <li class="gallery-item">
               <figure class="gallery-image">
-                <img src="assets/gallery/paragliding.jpg" alt="Gallery image">
+                <img src="static/gallery/paragliding.jpg" alt="Gallery image">
               </figure>
             </li>
 
             <li class="gallery-item">
               <figure class="gallery-image">
-                <img src="assets/gallery/wine-tasting.jpg" alt="Gallery image">
+                <img src="static/gallery/wine-tasting.jpg" alt="Gallery image">
               </figure>
             </li>
 
             <li class="gallery-item">
               <figure class="gallery-image">
-                <img src="assets/gallery/red-bus.jpg" alt="Gallery image">
+                <img src="static/gallery/red-bus.jpg" alt="Gallery image">
               </figure>
             </li>
 
             <li class="gallery-item">
               <figure class="gallery-image">
-                <img src="assets/gallery/cultural-attire.jpg" alt="Gallery image">
+                <img src="static/gallery/cultural-attire.jpg" alt="Gallery image">
               </figure>
             </li>
 
@@ -542,7 +552,7 @@
               <div class="package-card">
 
                 <figure class="card-banner">
-                  <img src="assets/gallery/hot-air-balloon.jpg" alt="Experience The Great Holiday On Beach" loading="lazy">
+                  <img src="static/gallery/hot-air-balloon.jpg" alt="Experience The Great Holiday On Beach" loading="lazy">
                 </figure>
 
                 <div class="card-content">
@@ -617,7 +627,7 @@
               <div class="package-card">
 
                 <figure class="card-banner">
-                  <img src="assets/gallery/safari.jpg" alt="Summer Holiday To The Oxolotan River" loading="lazy">
+                  <img src="static/gallery/safari.jpg" alt="Summer Holiday To The Oxolotan River" loading="lazy">
                 </figure>
 
                 <div class="card-content">
@@ -691,7 +701,7 @@
               <div class="package-card">
 
                 <figure class="card-banner">
-                  <img src="assets/gallery/wine-tasting.jpeg" alt="Santorini Island's Weekend Vacation" loading="lazy">
+                  <img src="static/gallery/wine-tasting.jpeg" alt="Santorini Island's Weekend Vacation" loading="lazy">
                 </figure>
 
                 <div class="card-content">
@@ -848,7 +858,7 @@
   <!-- 
     - custom js link
   -->
-  <script src="assets/js/script.js"></script>
+  <script src="static/js/script.js"></script>
 
   <!-- 
     - ionicon link
